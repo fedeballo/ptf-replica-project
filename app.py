@@ -1,25 +1,22 @@
 import streamlit as st
-import pandas as pd
 import matplotlib.pyplot as plt
+import numpy as np
 
-def load_data(file_path):
-    # Carica i dati dal file CSV
-    data = pd.read_csv(file_path)
-    return data
-
-def plot_index_returns(data):
-    # Crea il grafico dei rendimenti degli indici sovrapposti
+# Funzione per visualizzare il grafico dei rendimenti degli indici
+def plot_index_returns():
     plt.figure(figsize=(10, 6))
-    for index_name, index_returns in data.items():
-        plt.plot(index_returns, label=index_name)
+    dates = np.arange('2020-01', '2025-01', dtype='datetime64[M]')
+    for index_name in ["MSCI World AC", "BB Global Bond Agg", "HFRX Index", "Monster Index"]:
+        index_returns = np.random.randn(len(dates)).cumsum()
+        plt.plot(dates, index_returns, label=index_name)
     plt.xlabel('Date')
     plt.ylabel('Returns')
     plt.title('Index Returns Over Time')
     plt.legend()
     st.pyplot()
 
+# Funzione per visualizzare l'elenco dei futures
 def show_futures_list():
-    # Visualizza l'elenco dei futures utilizzati nel portafoglio di replica
     futures_list = {
         'RX1': 'Fixed-income security issued by the Federal Republic of Germany.',
         'CO1': 'Price of Brent crude oil in the financial markets.',
@@ -37,16 +34,22 @@ def show_futures_list():
     for future_code, description in futures_list.items():
         st.write(f"**{future_code}:** {description}")
 
+# Funzione principale
 def main():
-    st.title('Financial Replication App')
-
+    st.title('IndexReplicator')
+    
     st.write("## Introduction")
-    st.write("Welcome to our emerging financial consultancy firm! We specialize in replicating the returns of various indices using futures contracts.")
+    st.write("""
+        Welcome to our emerging financial consultancy firm! We specialize in replicating the returns of various indices using futures contracts:
+        - MSCI World AC
+        - BB Global Bond Agg
+        - HFRX Index
+        - Monster Index (a linear combination of the above)
+    """)
 
     st.write("### Index Returns")
     st.write("Below is the plot showing the returns of the selected indices over time.")
-    indices_data = load_data("indices_returns.csv")
-    plot_index_returns(indices_data)
+    plot_index_returns()
 
     st.write("## List of Futures")
     show_futures_list()
@@ -57,10 +60,8 @@ def main():
     st.write(f"## Regression Model for Replication of {selected_index}")
     st.write("In order to replicate the selected index, we utilize a regression model that provides the best fit.")
     st.write("Below is the plot of replicated returns along with error and trading costs.")
-
-    # Carica i dati dei rendimenti replicati e dei costi di trading
-    #plot_replicated_returns(replicated_returns)
-    #plot_error_and_trading_costs(error, trading_costs)
+    st.image("replication_results.png", caption="Replication Results")
+    st.write(f"Error: X.XX, Trading Costs: Y.YY")
 
 if __name__ == "__main__":
     main()
