@@ -60,7 +60,7 @@ def main():
     st.write(f"## Regression Model for Replication of {selected_index}")
     st.write("In order to replicate the selected index, we utilize a regression model that provides the best fit.")
     st.write("Below is the plot of replicated returns along with error and trading costs.")
-    st.image("replication_results.png", caption="Replication Results")
+    #st.image("replication_results.png", caption="Replication Results")
     st.write(f"Error: X.XX, Trading Costs: Y.YY")
 
 if __name__ == "__main__":
