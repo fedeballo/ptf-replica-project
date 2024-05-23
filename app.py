@@ -4,16 +4,16 @@ import numpy as np
 
 # Funzione per visualizzare il grafico dei rendimenti degli indici
 def plot_index_returns():
-    plt.figure(figsize=(10, 6))
+    fig, ax = plt.subplots(figsize=(10, 6))
     dates = np.arange('2020-01', '2025-01', dtype='datetime64[M]')
     for index_name in ["MSCI World AC", "BB Global Bond Agg", "HFRX Index", "Monster Index"]:
         index_returns = np.random.randn(len(dates)).cumsum()
-        plt.plot(dates, index_returns, label=index_name)
-    plt.xlabel('Date')
-    plt.ylabel('Returns')
-    plt.title('Index Returns Over Time')
-    plt.legend()
-    st.pyplot()
+        ax.plot(dates, index_returns, label=index_name)
+    ax.set_xlabel('Date')
+    ax.set_ylabel('Returns')
+    ax.set_title('Index Returns Over Time')
+    ax.legend()
+    st.pyplot(fig)
 
 # Funzione per visualizzare l'elenco dei futures
 def show_futures_list():
