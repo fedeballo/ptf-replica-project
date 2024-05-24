@@ -63,13 +63,13 @@ def main():
             "description": "In order to replicate the MSCI World AC, we utilize a diversified portfolio of futures contracts across various asset classes.",
             "error": "1.23",
             "trading_costs": "0.45",
-            "image": "msci_world_ac.png"
+            #"image": "msci_world_ac.png"
         },
         "BB Global Bond Agg": {
             "description": "To replicate the BB Global Bond Agg index, we focus on fixed-income futures, ensuring a stable and low-risk investment.",
             "error": "0.89",
             "trading_costs": "0.32",
-            "image": "bb_global_bond_agg.png"
+            #"image": "bb_global_bond_agg.png"
         },
         "HFRX Index": {
             "description": "Replicating the HFRX Index involves a sophisticated strategy using long and short positions in a variety of futures contracts.",
@@ -81,7 +81,7 @@ def main():
             "description": "The Monster Index is a comprehensive blend of equities, bonds, and alternative investments, replicated using a mix of futures contracts.",
             "error": "2.34",
             "trading_costs": "0.89",
-            "image": "monster_index.png"
+            #"image": "monster_index.png"
         }
     }
 
