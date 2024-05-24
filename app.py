@@ -36,7 +36,7 @@ def show_futures_list():
 
 # Funzione principale
 def main():
-    st.title('IndexReplicator')
+    st.title('ReplicaPro')
     
     st.write("## Introduction")
     st.write("""
