@@ -57,10 +57,18 @@ def main():
     st.write("## Choose Index to Replicate")
     selected_index = st.selectbox("Select an index to replicate", ["MSCI World AC", "BB Global Bond Agg", "HFRX Index", "Monster Index"])
 
+    # Dizionario che mappa ogni indice a un testo specifico
+    index_descriptions = {
+        "MSCI World AC": "In order to replicate the MSCI World AC, we utilize a diversified portfolio of futures contracts across various asset classes.",
+        "BB Global Bond Agg": "To replicate the BB Global Bond Agg index, we focus on fixed-income futures, ensuring a stable and low-risk investment.",
+        "HFRX Index": "Replicating the HFRX Index involves a sophisticated strategy using long and short positions in a variety of futures contracts.",
+        "Monster Index": "The Monster Index is a comprehensive blend of equities, bonds, and alternative investments, replicated using a mix of futures contracts."
+    }
+
     st.write(f"## Regression Model for Replication of {selected_index}")
-    st.write("In order to replicate the selected index, we utilize a regression model that provides the best fit.")
+    st.write(index_descriptions[selected_index])
     st.write("Below is the plot of replicated returns along with error and trading costs.")
-    #st.image("replication_results.png", caption="Replication Results")
+    # st.image("replication_results.png", caption="Replication Results")
     st.write(f"Error: X.XX, Trading Costs: Y.YY")
 
 if __name__ == "__main__":
