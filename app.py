@@ -36,7 +36,7 @@ def show_futures_list():
 
 # Funzione principale
 def main():
-    st.image("Logo.png", use_column_width=True)
+    st.image("Logo.png", width=100, height=100)
     st.title('ReplicaPro')
     
     st.write("## Introduction")
