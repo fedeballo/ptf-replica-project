@@ -75,7 +75,7 @@ def main():
             "description": "Replicating the HFRX Index involves a sophisticated strategy using long and short positions in a variety of futures contracts.",
             "error": "1.78",
             "trading_costs": "0.67",
-            "image": "hfrx_index.png"
+            #"image": "hfrx_index.png"
         },
         "Monster Index": {
             "description": "The Monster Index is a comprehensive blend of equities, bonds, and alternative investments, replicated using a mix of futures contracts.",
@@ -88,7 +88,7 @@ def main():
     st.write(f"## Regression Model for Replication of {selected_index}")
     st.write(index_details[selected_index]["description"])
     st.write("Below is the plot of replicated returns along with error and trading costs.")
-    st.image(index_details[selected_index]["image"], caption="Replication Results")
+    #st.image(index_details[selected_index]["image"], caption="Replication Results")
     st.write(f"Error: {index_details[selected_index]['error']}, Trading Costs: {index_details[selected_index]['trading_costs']}")
 
 if __name__ == "__main__":
