@@ -57,19 +57,39 @@ def main():
     st.write("## Choose Index to Replicate")
     selected_index = st.selectbox("Select an index to replicate", ["MSCI World AC", "BB Global Bond Agg", "HFRX Index", "Monster Index"])
 
-    # Dizionario che mappa ogni indice a un testo specifico
-    index_descriptions = {
-        "MSCI World AC": "In order to replicate the MSCI World AC, we utilize a diversified portfolio of futures contracts across various asset classes.",
-        "BB Global Bond Agg": "To replicate the BB Global Bond Agg index, we focus on fixed-income futures, ensuring a stable and low-risk investment.",
-        "HFRX Index": "Replicating the HFRX Index involves a sophisticated strategy using long and short positions in a variety of futures contracts.",
-        "Monster Index": "The Monster Index is a comprehensive blend of equities, bonds, and alternative investments, replicated using a mix of futures contracts."
+    # Dizionario che mappa ogni indice a un testo specifico e ad altri dettagli
+    index_details = {
+        "MSCI World AC": {
+            "description": "In order to replicate the MSCI World AC, we utilize a diversified portfolio of futures contracts across various asset classes.",
+            "error": "1.23",
+            "trading_costs": "0.45",
+            "image": "msci_world_ac.png"
+        },
+        "BB Global Bond Agg": {
+            "description": "To replicate the BB Global Bond Agg index, we focus on fixed-income futures, ensuring a stable and low-risk investment.",
+            "error": "0.89",
+            "trading_costs": "0.32",
+            "image": "bb_global_bond_agg.png"
+        },
+        "HFRX Index": {
+            "description": "Replicating the HFRX Index involves a sophisticated strategy using long and short positions in a variety of futures contracts.",
+            "error": "1.78",
+            "trading_costs": "0.67",
+            "image": "hfrx_index.png"
+        },
+        "Monster Index": {
+            "description": "The Monster Index is a comprehensive blend of equities, bonds, and alternative investments, replicated using a mix of futures contracts.",
+            "error": "2.34",
+            "trading_costs": "0.89",
+            "image": "monster_index.png"
+        }
     }
 
     st.write(f"## Regression Model for Replication of {selected_index}")
-    st.write(index_descriptions[selected_index])
+    st.write(index_details[selected_index]["description"])
     st.write("Below is the plot of replicated returns along with error and trading costs.")
-    # st.image("replication_results.png", caption="Replication Results")
-    st.write(f"Error: X.XX, Trading Costs: Y.YY")
+    st.image(index_details[selected_index]["image"], caption="Replication Results")
+    st.write(f"Error: {index_details[selected_index]['error']}, Trading Costs: {index_details[selected_index]['trading_costs']}")
 
 if __name__ == "__main__":
     main()
