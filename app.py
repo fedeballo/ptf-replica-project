@@ -47,7 +47,7 @@ def main():
         """,
         unsafe_allow_html=True
     )
-    st.header('ReplicaPro')  # Utilizzo di st.header() per un titolo più grande
+    st.title('ReplicaPro')  # Utilizzo di st.header() per un titolo più grande
     st.image("Logo.png", width=400, use_column_width=False)
     
     # Espandi l'introduzione
