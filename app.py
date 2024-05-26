@@ -2,8 +2,8 @@ import streamlit as st
 import matplotlib.pyplot as plt
 import numpy as np
 
-# Imposta il tema scuro
-st.set_page_config(page_title="ReplicaPro", page_icon="Logo.png", layout="wide", initial_sidebar_state="expanded")
+# Imposta il tema scuro e lo sfondo scuro
+st.set_page_config(page_title="ReplicaPro", page_icon="Logo.png", layout="wide", initial_sidebar_state="expanded", theme="dark")
 
 # Funzione per visualizzare il grafico dei rendimenti degli indici
 def plot_index_returns():
