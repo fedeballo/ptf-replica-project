@@ -47,13 +47,24 @@ def main():
             display: block;
             margin-left: auto;
             margin-right: auto;
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+        .centered {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
         }
         </style>
         """,
         unsafe_allow_html=True
     )
+    st.markdown('<div class="centered">', unsafe_allow_html=True)
     st.title('ReplicaPro')  # Utilizzo di st.header() per un titolo più grande
     st.image("Logo.png", width=400, use_column_width=False, output_format='PNG', caption='Logo',  )
+    st.markdown('</div>', unsafe_allow_html=True)
     
     # Espandi l'introduzione
     with st.expander("Introduction"):
