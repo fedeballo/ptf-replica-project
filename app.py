@@ -43,12 +43,17 @@ def main():
             font-size: 32px !important;
             text-align: center;
         }
+        .logo {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
         </style>
         """,
         unsafe_allow_html=True
     )
     st.title('ReplicaPro')  # Utilizzo di st.header() per un titolo più grande
-    st.image("Logo.png", width=400, use_column_width=False)
+    st.image("Logo.png", width=400, use_column_width=False, output_format='PNG', caption='Logo',  )
     
     # Espandi l'introduzione
     with st.expander("Introduction"):
