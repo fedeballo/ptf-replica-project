@@ -43,30 +43,12 @@ def main():
             font-size: 32px !important;
             text-align: center;
         }
-        .logo {
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            margin-top: 20px;
-            margin-bottom: 50px;
-        }
-        .centered {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            width: 100%;
-            padding-left: 50px;
-            padding-right: 50px;
-        }
         </style>
         """,
         unsafe_allow_html=True
     )
-    st.markdown('<div class="centered">', unsafe_allow_html=True)
-    st.title('ReplicaPro')  # Utilizzo di st.header() per un titolo più grande
+    st.header('ReplicaPro')  # Utilizzo di st.header() per un titolo più grande
     st.image("Logo.png", width=400, use_column_width=False)
-    st.markdown('</div>', unsafe_allow_html=True)
     
     # Espandi l'introduzione
     with st.expander("Introduction"):
