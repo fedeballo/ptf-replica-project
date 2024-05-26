@@ -36,7 +36,18 @@ def show_futures_list():
 
 # Funzione principale
 def main():
-    st.header('ReplicaPro')
+    st.markdown(
+        """
+        <style>
+        .title {
+            font-size: 32px !important;
+            text-align: center;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+    st.title('ReplicaPro') 
     st.image("Logo.png", width=400, use_column_width=False)
     
     st.write("## Introduction")
