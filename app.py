@@ -2,6 +2,9 @@ import streamlit as st
 import matplotlib.pyplot as plt
 import numpy as np
 
+# Impostare il tema predefinito (chiaro)
+st.set_page_config(page_title="ReplicaPro", page_icon="Logo.png", layout="wide", initial_sidebar_state="expanded")
+
 # Funzione per visualizzare il grafico dei rendimenti degli indici
 def plot_index_returns():
     fig, ax = plt.subplots(figsize=(10, 6))
