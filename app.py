@@ -2,8 +2,49 @@ import streamlit as st
 import matplotlib.pyplot as plt
 import numpy as np
 
-# Imposta il tema scuro e lo sfondo scuro
-st.set_page_config(page_title="ReplicaPro", page_icon="Logo.png", layout="wide", initial_sidebar_state="expanded", theme="dark")
+# Definisci lo stile personalizzato per il tema scuro
+custom_css = """
+<style>
+/* Imposta lo sfondo scuro */
+body {
+    color: white;
+    background-color: #1f1f1f; /* Colore sfondo scuro */
+}
+
+/* Imposta i colori dei testi e dei link */
+.stMarkdown, .markdown-text-container, .css-vfskoc {
+    color: white !important;
+}
+
+/* Aggiusta i colori del footer */
+footer {
+    color: white;
+}
+
+/* Aggiusta il colore di sfondo del selettore */
+[data-baseweb="select"] {
+    background-color: #2e2e2e !important;
+}
+
+/* Aggiusta i colori di sfondo e testo dei pulsanti */
+[data-testid="stButton"] {
+    color: white !important;
+    background-color: #303030 !important; /* Colore sfondo pulsante */
+}
+
+/* Aggiusta il colore dei bordi dei pulsanti */
+[data-testid="stButton"][data-baseweb="button"] {
+    border-color: #303030 !important;
+}
+</style>
+"""
+
+# Inserisci lo stile personalizzato nel layout
+st.markdown(custom_css, unsafe_allow_html=True)
+
+# Imposta altre configurazioni della pagina
+st.set_page_config(page_title="ReplicaPro", page_icon="Logo.png", layout="wide", initial_sidebar_state="expanded")
+
 
 # Funzione per visualizzare il grafico dei rendimenti degli indici
 def plot_index_returns():
