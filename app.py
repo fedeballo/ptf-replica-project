@@ -34,19 +34,26 @@ def show_futures_list():
     for future_code, description in futures_list.items():
         st.write(f"**{future_code}:** {description}")
 
-# Funzione principale
-def main():
+# Imposta lo stile del sito con uno sfondo scuro
+def set_custom_style():
     st.markdown(
         """
         <style>
-        .title {
-            font-size: 32px !important;
-            text-align: center;
+        body {
+            color: white;
+            background-color: #1f1f1f; /* Colore sfondo scuro */
         }
         </style>
         """,
         unsafe_allow_html=True
     )
+
+# Funzione principale
+def main():
+    # Imposta lo stile personalizzato
+    set_custom_style()
+
+    # Qui puoi aggiungere il resto del tuo codice
     st.title('ReplicaPro')  # Utilizzo di st.header() per un titolo più grande
     st.image("Logo.png", width=400, use_column_width=False)
     
