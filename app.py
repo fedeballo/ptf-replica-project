@@ -47,7 +47,7 @@ def main():
             display: block;
             margin-left: auto;
             margin-right: auto;
-            margin-top: 50px;
+            margin-top: 20px;
             margin-bottom: 50px;
         }
         .centered {
@@ -55,7 +55,9 @@ def main():
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            min-height: 100vh;
+            width: 100%;
+            padding-left: 50px;
+            padding-right: 50px;
         }
         </style>
         """,
