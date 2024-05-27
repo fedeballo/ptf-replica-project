@@ -55,7 +55,7 @@ def main():
     st.write('\n')  # add spacing
     
     # Espandi l'introduzione
-    with st.expander("Introduction"):
+    with st.expander("About us"):
         st.write("""
             Welcome to our emerging financial consultancy firm! We specialize in replicating the returns of various indices using futures contracts:
             - MSCI World AC
