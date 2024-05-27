@@ -63,14 +63,16 @@ def main():
 
     # Espandi i rendimenti degli indici
     with st.expander("Introduction to the Indices"):
-        st.write("""The indices we have focused on for replication are as follows:
-                    - **MSCI World AC**: This index captures large and mid-cap representation across 23 developed markets and 27 emerging markets countries, reflecting the performance of the global equity market.
-                    - **BB Global Bond Agg**: The Bloomberg Global Aggregate Bond Index is a flagship measure of global investment-grade debt from 24 local currency markets, providing a broad-based exposure to the global bond market.
-                    - **HFRX Index**: This index is designed to be representative of the overall composition of the hedge fund universe, offering insight into the performance of various hedge fund strategies.
-                    - **Monster Index**: A custom index that is a linear combination of the above indices, providing a diversified blend of equities, bonds, and alternative investments for a balanced investment approach.
-        """)
-        st.write("Below is the plot showing the returns of the selected indices over time.")
-        plot_index_returns()
+    st.markdown("""
+        ### The indices we have focused on for replication are as follows:
+        - **MSCI World AC**: This index captures large and mid-cap representation across 23 developed markets and 27 emerging markets countries, reflecting the performance of the global equity market.
+        - **BB Global Bond Agg**: The Bloomberg Global Aggregate Bond Index is a flagship measure of global investment-grade debt from 24 local currency markets, providing a broad-based exposure to the global bond market.
+        - **HFRX Index**: This index is designed to be representative of the overall composition of the hedge fund universe, offering insight into the performance of various hedge fund strategies.
+        - **Monster Index**: A custom index that is a linear combination of the above indices, providing a diversified blend of equities, bonds, and alternative investments for a balanced investment approach.
+    """)
+    st.write("Below is the plot showing the returns of the selected indices over time.")
+    plot_index_returns()
+
 
     # Espandi l'elenco dei futures
     with st.expander("List of Futures"):
