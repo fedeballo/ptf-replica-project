@@ -50,12 +50,9 @@ def set_custom_style():
 
 # Funzione principale
 def main():
-    # Imposta lo stile personalizzato
-    set_custom_style()
-
-    # Qui puoi aggiungere il resto del tuo codice
-    st.title('ReplicaPro')  # Utilizzo di st.header() per un titolo più grande
-    st.image("Logo.png", width=400, use_column_width=False)
+     st.image('Logo.png')  # TITLE and Creator information
+    st.markdown('Welcome to ReplicaPro! Our platform offers a unique investment opportunity through futures contracts to replicate the performance of various indices. Explore the potential of diversifying your portfolio with ease and precision')
+    st.write('\n')  # add spacing
     
     # Espandi l'introduzione
     with st.expander("Introduction"):
