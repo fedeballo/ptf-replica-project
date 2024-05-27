@@ -51,6 +51,7 @@ def set_custom_style():
 # Funzione principale
 def main():
     st.image('Logo.png')  # TITLE and Creator information
+    st.write('\n')  # add spacing
     st.markdown('Welcome to ReplicaPro! Our platform offers a unique investment opportunity through futures contracts to replicate the performance of various indices. Explore the potential of diversifying your portfolio with ease and precision')
     st.write('\n')  # add spacing
     
