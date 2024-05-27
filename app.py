@@ -58,15 +58,17 @@ def main():
     # Espandi l'introduzione
     with st.expander("About us"):
         st.write("""
-            Welcome to our emerging financial consultancy firm! We specialize in replicating the returns of various indices using futures contracts:
-            - MSCI World AC
-            - BB Global Bond Agg
-            - HFRX Index
-            - Monster Index (a linear combination of the above)
+            Welcome to our emerging financial consultancy firm! We specialize in replicating the returns of various indices using futures contracts. We are a group of students from Politecnico di Milano who have developed this project with a passion for finance and technology. Our replicated portfolios are derived through the application of various models and advanced machine learning techniques, ensuring precision and effectiveness in our investment strategies.
         """)
 
     # Espandi i rendimenti degli indici
-    with st.expander("Index Returns"):
+    with st.expander("Introduction to the Indices"):
+        st.write("""The indices we have focused on for replication are as follows:
+                    - **MSCI World AC**: This index captures large and mid-cap representation across 23 developed markets and 27 emerging markets countries, reflecting the performance of the global equity market.
+                    - **BB Global Bond Agg**: The Bloomberg Global Aggregate Bond Index is a flagship measure of global investment-grade debt from 24 local currency markets, providing a broad-based exposure to the global bond market.
+                    - **HFRX Index**: This index is designed to be representative of the overall composition of the hedge fund universe, offering insight into the performance of various hedge fund strategies.
+                    - **Monster Index**: A custom index that is a linear combination of the above indices, providing a diversified blend of equities, bonds, and alternative investments for a balanced investment approach.
+        """)
         st.write("Below is the plot showing the returns of the selected indices over time.")
         plot_index_returns()
 
