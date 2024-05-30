@@ -123,7 +123,14 @@ def main():
 
             # Calcola e mostra il "Mean Turnover" moltiplicato per l'importo investito
             mean_turnover = mean_turnover_values[selected_index] * investment_amount
-            st.write(f"Mean Turnover (multiplied by investment amount): {mean_turnover:.2f}")
+            st.write(f"Mean Turnover: {mean_turnover:.2f}")
+
+            # Spiegazione breve dei termini
+            st.write("\n")
+            st.write("*Mean Tracking Error: Measures the deviation of the replication portfolio's returns from the target index's returns.*")
+            st.write("*Information Ratio: Indicates the risk-adjusted return of the replication portfolio compared to the target index.*")
+            st.write("*Mean Turnover: Represents the average proportion of the portfolio that is traded over a given period.*")
+
 
 if __name__ == "__main__":
     main()
