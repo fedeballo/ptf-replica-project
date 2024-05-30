@@ -2,19 +2,6 @@ import streamlit as st
 import matplotlib.pyplot as plt
 import numpy as np
 
-# Funzione per visualizzare il grafico dei rendimenti degli indici
-def plot_index_returns():
-    fig, ax = plt.subplots(figsize=(10, 6))
-    dates = np.arange('2020-01', '2025-01', dtype='datetime64[M]')
-    index_returns = np.linspace(1, 1.5, len(dates))  # Rendimenti di esempio
-
-    ax.plot(dates, index_returns, label="Index Returns")
-    ax.set_xlabel('Date')
-    ax.set_ylabel('Returns')
-    ax.set_title('Index Returns Over Time')
-    ax.legend()
-    st.pyplot(fig)
-
 # Funzione per visualizzare l'elenco dei futures
 def show_futures_list():
     futures_list = {
@@ -59,7 +46,7 @@ def main():
             - **Monster Index 2**: Another custom index that is a linear combination of the above indices with weights [0.05, 0.4, 0.3, 0.25], offering a different diversified investment approach.
         """)
         st.write("Below is the plot showing the returns of the selected indices over time.")
-        plot_index_returns()
+        st.image("indice_returns.png")
 
     # Espandi l'elenco dei futures
     with st.expander("List of Futures"):
