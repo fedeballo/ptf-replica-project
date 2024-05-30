@@ -7,17 +7,27 @@ def generate_cumulative_returns(length):
     return np.random.randn(length).cumsum()
 
 # Funzione per visualizzare il grafico dei rendimenti degli indici
-def plot_index_returns():
+def plot_index_returns(index_name):
     fig, ax = plt.subplots(figsize=(10, 6))
     dates = np.arange('2020-01', '2025-01', dtype='datetime64[M]')
-    for index_name in ["MSCI World AC", "BB Global Bond Agg", "HFRX Index", "Monster Index 1", "Monster Index 2"]:
-        index_returns = generate_cumulative_returns(len(dates))
-        ax.plot(dates, index_returns, label=index_name)
+    index_returns = generate_cumulative_returns(len(dates))
+    replicated_returns = generate_cumulative_returns(len(dates))
+
+    ax.plot(dates, index_returns, label=f"{index_name} Actual Returns")
+    ax.plot(dates, replicated_returns, label=f"{index_name} Replicated Returns", linestyle='--')
+    
     ax.set_xlabel('Date')
     ax.set_ylabel('Returns')
-    ax.set_title('Index Returns Over Time')
+    ax.set_title(f'{index_name} Returns Over Time')
     ax.legend()
+    
+    # Calcolo di esempio per MAE e Tracking Error
+    mae = np.mean(np.abs(index_returns - replicated_returns))
+    tracking_error = np.std(index_returns - replicated_returns)
+
     st.pyplot(fig)
+    st.write(f"Mean Absolute Error (MAE): {mae:.2f}")
+    st.write(f"Tracking Error: {tracking_error:.2f}")
 
 # Funzione per visualizzare l'elenco dei futures
 def show_futures_list():
@@ -62,7 +72,7 @@ def main():
             - **Monster Index 2**: Another custom index that is a linear combination of the above indices with weights [0.4, 0.1, 0.5], offering a different diversified investment approach.
         """)
         st.write("Below is the plot showing the returns of the selected indices over time.")
-        plot_index_returns()
+        plot_index_returns("MSCI World AC")  # Display a sample plot initially
 
     # Espandi l'elenco dei futures
     with st.expander("List of Futures"):
@@ -72,42 +82,11 @@ def main():
     with st.expander("Choose Index to Replicate"):
         selected_index = st.selectbox("Select an index to replicate", ["MSCI World AC", "BB Global Bond Agg", "HFRX Index", "Monster Index 1", "Monster Index 2"])
 
-        # Dizionario che mappa ogni indice a un testo specifico e ad altri dettagli
-        index_details = {
-            "MSCI World AC": {
-                "description": "In order to replicate the MSCI World AC, we utilize a diversified portfolio of futures contracts across various asset classes.",
-                "error": "1.23",
-                "trading_costs": "0.45",
-            },
-            "BB Global Bond Agg": {
-                "description": "To replicate the BB Global Bond Agg index, we focus on fixed-income futures, ensuring a stable and low-risk investment.",
-                "error": "0.89",
-                "trading_costs": "0.32",
-            },
-            "HFRX Index": {
-                "description": "Replicating the HFRX Index involves a sophisticated strategy using long and short positions in a variety of futures contracts.",
-                "error": "1.78",
-                "trading_costs": "0.67",
-            },
-            "Monster Index 1": {
-                "description": "The Monster Index 1 is a comprehensive blend of equities, bonds, and alternative investments, replicated using a mix of futures contracts with weights [0.3, 0.2, 0.5].",
-                "error": "2.34",
-                "trading_costs": "0.89",
-            },
-            "Monster Index 2": {
-                "description": "The Monster Index 2 is another blend of equities, bonds, and alternative investments, replicated using a mix of futures contracts with weights [0.4, 0.1, 0.5].",
-                "error": "2.50",
-                "trading_costs": "0.95",
-            }
-        }
-
         st.write(f"## Replication of {selected_index}")
-        st.write(index_details[selected_index]["description"])
-        st.write(f"Error: {index_details[selected_index]['error']}, Trading Costs: {index_details[selected_index]['trading_costs']}")
-
+        
         # Input per l'ammontare dell'investimento
         investment_amount = st.number_input("Enter the amount you want to invest:", min_value=0.0, step=100.0)
-
+        
         # Proporzioni di investimento nei futures (valori di esempio)
         futures_allocation = {
             "MSCI World AC": {'RX1': 0.10, 'CO1': 0.05, 'DU1': 0.10, 'ES1': 0.20, 'GC1': 0.05, 'NQ1': 0.15, 'TP1': 0.05, 'TU2': 0.10, 'TY1': 0.10, 'VG1': 0.10},
@@ -123,4 +102,10 @@ def main():
             st.write("### Investment Allocation")
             for future_code, proportion in allocations.items():
                 amount_invested = investment_amount * proportion
-                st.write(f"**{future_code}:** {
+                st.write(f"**{future_code}:** {amount_invested:.2f}")
+
+            # Mostra il grafico dei rendimenti dell'indice scelto e della replica
+            plot_index_returns(selected_index)
+
+if __name__ == "__main__":
+    main()
