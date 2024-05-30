@@ -75,6 +75,8 @@ def main():
         investment_amount = st.number_input("Enter the amount you want to invest in the selected index:", min_value=0.0, step=100.0)
         st.write("""*Note that the replication portfolio might employ leverage or have a lower overall value*
         """)
+        st.write("""*The weights are valid for the next 10 days and will be updated thereafter*
+        """)
         # Proporzioni di investimento nei futures (valori di esempio)
         futures_allocation = {
             "MSCI World AC": {'CO1': 0.0658, 'DU1': 0, 'ES1': 0.4981, 'GC1': 0, 'NQ1': 0.0082, 'RX1': 0.2052, 'TP1': 0, 'TU2': 0, 'TY1': 0, 'VG1': 0},
