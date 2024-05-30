@@ -31,7 +31,7 @@ def main():
     # Espandi l'introduzione
     with st.expander("About us"):
         st.write("""
-            Welcome to our emerging financial consultancy firm! We specialize in replicating the returns of various indices using futures contracts. We are a group of students from Politecnico di Milano who have developed this project with a passion for finance and technology. Our replicated portfolios are derived through the application of various models and advanced machine learning techniques, ensuring precision and effectiveness in our investment strategies.
+            Welcome to our emerging financial consultancy firm! We specialize in replicating various indices using futures contracts. We are a group of students from Politecnico di Milano who have developed this project with a passion for finance and technology. Our replicated portfolios are derived through the application of various models and advanced machine learning techniques, ensuring precision and effectiveness in our investment strategies.
         """)
 
     # Espandi i rendimenti degli indici
