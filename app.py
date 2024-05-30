@@ -72,7 +72,7 @@ def main():
         st.write(f"## Replication of {selected_index}")
         
         # Input for the investment amount
-        investment_amount = st.number_input("Enter the amount you want to invest in the selected index.<br><small><i>Note that the replication portfolio might employ leverage or have a lower overall value.</i></small>", min_value=0.0, step=100.0, format="%.2f")
+        investment_amount = st.number_input("Enter the amount you want to invest in the selected index: \n<br><small><i>Note that the replication portfolio might employ leverage or have a lower overall value.</i></small>", min_value=0.0, step=100.0, format="%.2f")
 
         # Proporzioni di investimento nei futures (valori di esempio)
         futures_allocation = {
