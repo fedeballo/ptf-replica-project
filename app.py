@@ -87,32 +87,32 @@ def main():
                 st.image("MXWO_LASSO_COMPARISON.png")
                 st.write("Mean Tracking Error: 0.0224")
                 st.write("Information Ratio: -0.8347")
-                st.write("Mean Turnover: investment_amount * 0.006")
+                st.write("Mean Turnover: 0.006")
             elif selected_index == "MSCI World":
                 st.image("MXWD_LASSO_PREDICTION.png")
                 st.write("Mean Tracking Error: 0.0352")
                 st.write("Information Ratio: -0.3977")
-                st.write("Mean Turnover: investment_amount * 0.0077")    
+                st.write("Mean Turnover: 0.0077")    
             elif selected_index == "BB Global Bond Agg":
                 st.image("LEGATRUU_LASSO_PREDICTION.png")
                 st.write("Mean Tracking Error: 0.0366")
                 st.write("Information Ratio: 0.0964")
-                st.write("Mean Turnover: investment_amount * 0.0022")
+                st.write("Mean Turnover: 0.0022")
             elif selected_index == "HFRX Index":
                 st.image("HFRLX_ELASTIC_COMPARISON.png")
                 st.write("Mean Tracking Error: 0.0158")
                 st.write("Information Ratio: -0.3074")
-                st.write("Mean Turnover: investment_amount * 0.0036")
+                st.write("Mean Turnover: 0.0036")
             elif selected_index == "Monster Index 1":
                 st.image("MONSTER1_LASSO_PREDICTION.png")
                 st.write("Mean Tracking Error: 0.0243")
                 st.write("Information Ratio: -0.6899")
-                st.write("Mean Turnover: investment_amount * 0.0049")
+                st.write("Mean Turnover: 0.0049")
             elif selected_index == "Monster Index 2":
                 st.image("MONSTER2_LASSO_COMPARISON.png")
                 st.write("Mean Tracking Error: 0.030")
                 st.write("Information Ratio: -0.485")
-                st.write("Mean Turnover: investment_amount * 0.0056")
+                st.write("Mean Turnover: 0.0056")
 
 if __name__ == "__main__":
     main()
