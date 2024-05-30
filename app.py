@@ -2,12 +2,16 @@ import streamlit as st
 import matplotlib.pyplot as plt
 import numpy as np
 
+# Funzione per generare rendimenti casuali cumulati
+def generate_cumulative_returns(length):
+    return np.random.randn(length).cumsum()
+
 # Funzione per visualizzare il grafico dei rendimenti degli indici
 def plot_index_returns():
     fig, ax = plt.subplots(figsize=(10, 6))
     dates = np.arange('2020-01', '2025-01', dtype='datetime64[M]')
-    for index_name in ["MSCI World AC", "BB Global Bond Agg", "HFRX Index", "Monster Index"]:
-        index_returns = np.random.randn(len(dates)).cumsum()
+    for index_name in ["MSCI World AC", "BB Global Bond Agg", "HFRX Index", "Monster Index 1", "Monster Index 2"]:
+        index_returns = generate_cumulative_returns(len(dates))
         ax.plot(dates, index_returns, label=index_name)
     ax.set_xlabel('Date')
     ax.set_ylabel('Returns')
@@ -34,20 +38,6 @@ def show_futures_list():
     for future_code, description in futures_list.items():
         st.write(f"**{future_code}:** {description}")
 
-# Imposta lo stile del sito con uno sfondo scuro
-def set_custom_style():
-    st.markdown(
-        """
-        <style>
-        body {
-            color: white;
-            background-color: #1f1f1f; /* Colore sfondo scuro */
-        }
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
-
 # Funzione principale
 def main():
     st.image('Logo.png')  # TITLE and Creator information
@@ -68,11 +58,11 @@ def main():
             - **MSCI World AC**: This index captures large and mid-cap representation across 23 developed markets and 27 emerging markets countries, reflecting the performance of the global equity market.
             - **BB Global Bond Agg**: The Bloomberg Global Aggregate Bond Index is a flagship measure of global investment-grade debt from 24 local currency markets, providing a broad-based exposure to the global bond market.
             - **HFRX Index**: This index is designed to be representative of the overall composition of the hedge fund universe, offering insight into the performance of various hedge fund strategies.
-            - **Monster Index**: A custom index that is a linear combination of the above indices, providing a diversified blend of equities, bonds, and alternative investments for a balanced investment approach.
+            - **Monster Index 1**: A custom index that is a linear combination of the above indices with weights [0.3, 0.2, 0.5], providing a diversified blend of equities, bonds, and alternative investments.
+            - **Monster Index 2**: Another custom index that is a linear combination of the above indices with weights [0.4, 0.1, 0.5], offering a different diversified investment approach.
         """)
         st.write("Below is the plot showing the returns of the selected indices over time.")
         plot_index_returns()
-
 
     # Espandi l'elenco dei futures
     with st.expander("List of Futures"):
@@ -80,7 +70,7 @@ def main():
 
     # Espandi la scelta dell'indice da replicare
     with st.expander("Choose Index to Replicate"):
-        selected_index = st.selectbox("Select an index to replicate", ["MSCI World AC", "BB Global Bond Agg", "HFRX Index", "Monster Index"])
+        selected_index = st.selectbox("Select an index to replicate", ["MSCI World AC", "BB Global Bond Agg", "HFRX Index", "Monster Index 1", "Monster Index 2"])
 
         # Dizionario che mappa ogni indice a un testo specifico e ad altri dettagli
         index_details = {
@@ -88,33 +78,49 @@ def main():
                 "description": "In order to replicate the MSCI World AC, we utilize a diversified portfolio of futures contracts across various asset classes.",
                 "error": "1.23",
                 "trading_costs": "0.45",
-                # "image": "msci_world_ac.png" # Assicurati che l'immagine esista nel repository
             },
             "BB Global Bond Agg": {
                 "description": "To replicate the BB Global Bond Agg index, we focus on fixed-income futures, ensuring a stable and low-risk investment.",
                 "error": "0.89",
                 "trading_costs": "0.32",
-                # "image": "bb_global_bond_agg.png"
             },
             "HFRX Index": {
                 "description": "Replicating the HFRX Index involves a sophisticated strategy using long and short positions in a variety of futures contracts.",
                 "error": "1.78",
                 "trading_costs": "0.67",
-                # "image": "hfrx_index.png"
             },
-            "Monster Index": {
-                "description": "The Monster Index is a comprehensive blend of equities, bonds, and alternative investments, replicated using a mix of futures contracts.",
+            "Monster Index 1": {
+                "description": "The Monster Index 1 is a comprehensive blend of equities, bonds, and alternative investments, replicated using a mix of futures contracts with weights [0.3, 0.2, 0.5].",
                 "error": "2.34",
                 "trading_costs": "0.89",
-                # "image": "monster_index.png"
+            },
+            "Monster Index 2": {
+                "description": "The Monster Index 2 is another blend of equities, bonds, and alternative investments, replicated using a mix of futures contracts with weights [0.4, 0.1, 0.5].",
+                "error": "2.50",
+                "trading_costs": "0.95",
             }
         }
 
-        st.write(f"## Regression Model for Replication of {selected_index}")
+        st.write(f"## Replication of {selected_index}")
         st.write(index_details[selected_index]["description"])
-        st.write("Below is the plot of replicated returns along with error and trading costs.")
-        # st.image(index_details[selected_index]["image"], caption="Replication Results")
         st.write(f"Error: {index_details[selected_index]['error']}, Trading Costs: {index_details[selected_index]['trading_costs']}")
 
-if __name__ == "__main__":
-    main()
+        # Input per l'ammontare dell'investimento
+        investment_amount = st.number_input("Enter the amount you want to invest:", min_value=0.0, step=100.0)
+
+        # Proporzioni di investimento nei futures (valori di esempio)
+        futures_allocation = {
+            "MSCI World AC": {'RX1': 0.10, 'CO1': 0.05, 'DU1': 0.10, 'ES1': 0.20, 'GC1': 0.05, 'NQ1': 0.15, 'TP1': 0.05, 'TU2': 0.10, 'TY1': 0.10, 'VG1': 0.10},
+            "BB Global Bond Agg": {'RX1': 0.25, 'CO1': 0.05, 'DU1': 0.25, 'ES1': 0.05, 'GC1': 0.05, 'NQ1': 0.05, 'TP1': 0.05, 'TU2': 0.15, 'TY1': 0.10, 'VG1': 0.05},
+            "HFRX Index": {'RX1': 0.10, 'CO1': 0.10, 'DU1': 0.10, 'ES1': 0.15, 'GC1': 0.10, 'NQ1': 0.10, 'TP1': 0.10, 'TU2': 0.10, 'TY1': 0.10, 'VG1': 0.05},
+            "Monster Index 1": {'RX1': 0.15, 'CO1': 0.10, 'DU1': 0.10, 'ES1': 0.10, 'GC1': 0.10, 'NQ1': 0.10, 'TP1': 0.05, 'TU2': 0.10, 'TY1': 0.10, 'VG1': 0.10},
+            "Monster Index 2": {'RX1': 0.20, 'CO1': 0.05, 'DU1': 0.15, 'ES1': 0.10, 'GC1': 0.05, 'NQ1': 0.10, 'TP1': 0.05, 'TU2': 0.10, 'TY1': 0.10, 'VG1': 0.10},
+        }
+
+        # Calcola l'investimento per ciascun future
+        if investment_amount > 0:
+            allocations = futures_allocation[selected_index]
+            st.write("### Investment Allocation")
+            for future_code, proportion in allocations.items():
+                amount_invested = investment_amount * proportion
+                st.write(f"**{future_code}:** {
