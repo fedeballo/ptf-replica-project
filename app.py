@@ -93,9 +93,7 @@ def main():
                 amount_invested = investment_amount * proportion
                 st.write(f"**{future_code}:** {amount_invested:.2f}")
 
-            # Calcola e mostra il "Mean Turnover" moltiplicato per l'importo investito
-            mean_turnover = mean_turnover_values[selected_index] * investment_amount
-            st.write(f"Mean Turnover (multiplied by investment amount): {mean_turnover:.2f}")
+            
 
             # Mostra il grafico dei rendimenti dell'indice scelto e della replica
             if selected_index == "MSCI World AC":
@@ -122,6 +120,10 @@ def main():
                 st.image("MONSTER2_LASSO_COMPARISON.png")
                 st.write("Mean Tracking Error: 0.030")
                 st.write("Information Ratio: -0.485")
+
+            # Calcola e mostra il "Mean Turnover" moltiplicato per l'importo investito
+            mean_turnover = mean_turnover_values[selected_index] * investment_amount
+            st.write(f"Mean Turnover (multiplied by investment amount): {mean_turnover:.2f}")
 
 if __name__ == "__main__":
     main()
