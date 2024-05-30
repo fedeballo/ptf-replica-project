@@ -64,6 +64,7 @@ def main():
         """)
         st.write("""*The weights are valid for the next 10 weeks and will be updated thereafter*
         """)
+
         # Proporzioni di investimento nei futures (valori di esempio)
         futures_allocation = {
             "MSCI World AC": {'CO1': 0.0658, 'DU1': 0, 'ES1': 0.4981, 'GC1': 0, 'NQ1': 0.0082, 'RX1': 0.2052, 'TP1': 0, 'TU2': 0, 'TY1': 0, 'VG1': 0},
@@ -74,6 +75,16 @@ def main():
             "Monster Index 2": {'CO1': 0.1060, 'DU1': 0, 'ES1': 0.0867, 'GC1': 0, 'NQ1': 0.0518, 'RX1': 0.5355, 'TP1': 0, 'TU2': 0, 'TY1': 0, 'VG1': 0},
         }
 
+        # Mean Turnover values for each index (valori di esempio)
+        mean_turnover_values = {
+            "MSCI World AC": 0.006,
+            "MSCI World": 0.0077,
+            "BB Global Bond Agg": 0.0022,
+            "HFRX Index": 0.0036,
+            "Monster Index 1": 0.0049,
+            "Monster Index 2": 0.0056,
+        }
+
         # Calcola l'investimento per ciascun future
         if investment_amount > 0:
             allocations = futures_allocation[selected_index]
@@ -82,37 +93,35 @@ def main():
                 amount_invested = investment_amount * proportion
                 st.write(f"**{future_code}:** {amount_invested:.2f}")
 
+            # Calcola e mostra il "Mean Turnover" moltiplicato per l'importo investito
+            mean_turnover = mean_turnover_values[selected_index] * investment_amount
+            st.write(f"Mean Turnover (multiplied by investment amount): {mean_turnover:.2f}")
+
             # Mostra il grafico dei rendimenti dell'indice scelto e della replica
             if selected_index == "MSCI World AC":
                 st.image("MXWO_LASSO_COMPARISON.png")
                 st.write("Mean Tracking Error: 0.0224")
                 st.write("Information Ratio: -0.8347")
-                st.write("Mean Turnover: 0.006")
             elif selected_index == "MSCI World":
                 st.image("MXWD_LASSO_PREDICTION.png")
                 st.write("Mean Tracking Error: 0.0352")
                 st.write("Information Ratio: -0.3977")
-                st.write("Mean Turnover: 0.0077")    
             elif selected_index == "BB Global Bond Agg":
                 st.image("LEGATRUU_LASSO_PREDICTION.png")
                 st.write("Mean Tracking Error: 0.0366")
                 st.write("Information Ratio: 0.0964")
-                st.write("Mean Turnover: 0.0022")
             elif selected_index == "HFRX Index":
                 st.image("HFRLX_ELASTIC_COMPARISON.png")
                 st.write("Mean Tracking Error: 0.0158")
                 st.write("Information Ratio: -0.3074")
-                st.write("Mean Turnover: 0.0036")
             elif selected_index == "Monster Index 1":
                 st.image("MONSTER1_LASSO_PREDICTION.png")
                 st.write("Mean Tracking Error: 0.0243")
                 st.write("Information Ratio: -0.6899")
-                st.write("Mean Turnover: 0.0049")
             elif selected_index == "Monster Index 2":
                 st.image("MONSTER2_LASSO_COMPARISON.png")
                 st.write("Mean Tracking Error: 0.030")
                 st.write("Information Ratio: -0.485")
-                st.write("Mean Turnover: 0.0056")
 
 if __name__ == "__main__":
     main()
