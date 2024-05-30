@@ -2,32 +2,18 @@ import streamlit as st
 import matplotlib.pyplot as plt
 import numpy as np
 
-# Funzione per generare rendimenti casuali cumulati
-def generate_cumulative_returns(length):
-    return np.random.randn(length).cumsum()
-
 # Funzione per visualizzare il grafico dei rendimenti degli indici
-def plot_index_returns(index_name):
+def plot_index_returns():
     fig, ax = plt.subplots(figsize=(10, 6))
     dates = np.arange('2020-01', '2025-01', dtype='datetime64[M]')
-    index_returns = generate_cumulative_returns(len(dates))
-    replicated_returns = generate_cumulative_returns(len(dates))
+    index_returns = np.linspace(1, 1.5, len(dates))  # Rendimenti di esempio
 
-    ax.plot(dates, index_returns, label=f"{index_name} Actual Returns")
-    ax.plot(dates, replicated_returns, label=f"{index_name} Replicated Returns", linestyle='--')
-    
+    ax.plot(dates, index_returns, label="Index Returns")
     ax.set_xlabel('Date')
     ax.set_ylabel('Returns')
-    ax.set_title(f'{index_name} Returns Over Time')
+    ax.set_title('Index Returns Over Time')
     ax.legend()
-    
-    # Calcolo di esempio per MAE e Tracking Error
-    mae = np.mean(np.abs(index_returns - replicated_returns))
-    tracking_error = np.std(index_returns - replicated_returns)
-
     st.pyplot(fig)
-    st.write(f"Mean Absolute Error (MAE): {mae:.2f}")
-    st.write(f"Tracking Error: {tracking_error:.2f}")
 
 # Funzione per visualizzare l'elenco dei futures
 def show_futures_list():
@@ -65,14 +51,15 @@ def main():
     with st.expander("Introduction to the Indices"):
         st.markdown("""
             ### The indices we have focused on for replication are as follows:
-            - **MSCI World AC**: This index captures large and mid-cap representation across 23 developed markets and 27 emerging markets countries, reflecting the performance of the global equity market.
+            - **MSCI World All Country**: This index captures large and mid-cap representation across 23 developed markets and 27 emerging markets countries, reflecting the performance of the global equity market.
+            - **MSCI World**: This index captures large and mid-cap representation across 23 developed markets countries, reflecting the performance of the global developed equity market.
             - **BB Global Bond Agg**: The Bloomberg Global Aggregate Bond Index is a flagship measure of global investment-grade debt from 24 local currency markets, providing a broad-based exposure to the global bond market.
             - **HFRX Index**: This index is designed to be representative of the overall composition of the hedge fund universe, offering insight into the performance of various hedge fund strategies.
-            - **Monster Index 1**: A custom index that is a linear combination of the above indices with weights [0.3, 0.2, 0.5], providing a diversified blend of equities, bonds, and alternative investments.
-            - **Monster Index 2**: Another custom index that is a linear combination of the above indices with weights [0.4, 0.1, 0.5], offering a different diversified investment approach.
+            - **Monster Index 1**: A custom index that is a linear combination of the above indices with weights [0.25, 0, 0.25, 0.5], providing a diversified blend of equities, bonds, and alternative investments.
+            - **Monster Index 2**: Another custom index that is a linear combination of the above indices with weights [0.05, 0.4, 0.3, 0.25], offering a different diversified investment approach.
         """)
         st.write("Below is the plot showing the returns of the selected indices over time.")
-        plot_index_returns("MSCI World AC")  # Display a sample plot initially
+        plot_index_returns()
 
     # Espandi l'elenco dei futures
     with st.expander("List of Futures"):
@@ -80,7 +67,7 @@ def main():
 
     # Espandi la scelta dell'indice da replicare
     with st.expander("Choose Index to Replicate"):
-        selected_index = st.selectbox("Select an index to replicate", ["MSCI World AC", "BB Global Bond Agg", "HFRX Index", "Monster Index 1", "Monster Index 2"])
+        selected_index = st.selectbox("Select an index to replicate", ["MSCI World AC", "MSCI World", "BB Global Bond Agg", "HFRX Index", "Monster Index 1", "Monster Index 2"])
 
         st.write(f"## Replication of {selected_index}")
         
@@ -89,11 +76,12 @@ def main():
         
         # Proporzioni di investimento nei futures (valori di esempio)
         futures_allocation = {
-            "MSCI World AC": {'RX1': 0.10, 'CO1': 0.05, 'DU1': 0.10, 'ES1': 0.20, 'GC1': 0.05, 'NQ1': 0.15, 'TP1': 0.05, 'TU2': 0.10, 'TY1': 0.10, 'VG1': 0.10},
-            "BB Global Bond Agg": {'RX1': 0.25, 'CO1': 0.05, 'DU1': 0.25, 'ES1': 0.05, 'GC1': 0.05, 'NQ1': 0.05, 'TP1': 0.05, 'TU2': 0.15, 'TY1': 0.10, 'VG1': 0.05},
-            "HFRX Index": {'RX1': 0.10, 'CO1': 0.10, 'DU1': 0.10, 'ES1': 0.15, 'GC1': 0.10, 'NQ1': 0.10, 'TP1': 0.10, 'TU2': 0.10, 'TY1': 0.10, 'VG1': 0.05},
-            "Monster Index 1": {'RX1': 0.15, 'CO1': 0.10, 'DU1': 0.10, 'ES1': 0.10, 'GC1': 0.10, 'NQ1': 0.10, 'TP1': 0.05, 'TU2': 0.10, 'TY1': 0.10, 'VG1': 0.10},
-            "Monster Index 2": {'RX1': 0.20, 'CO1': 0.05, 'DU1': 0.15, 'ES1': 0.10, 'GC1': 0.05, 'NQ1': 0.10, 'TP1': 0.05, 'TU2': 0.10, 'TY1': 0.10, 'VG1': 0.10},
+            "MSCI World AC": {'CO1': 0.0658, 'DU1': 0, 'ES1': 0.4981, 'GC1': 0, 'NQ1': 0.0082, 'RX1': 0.2052, 'TP1': 0, 'TU2': 0, 'TY1': 0, 'VG1': 0},
+            "MSCI World": {'CO1': 0.0931, 'DU1': 0, 'ES1': 0.4558, 'GC1': 0, 'NQ1': 0.0078, 'RX1': 0.2031, 'TP1': 0, 'TU2': 0, 'TY1': 0, 'VG1': 0},
+            "BB Global Bond Agg": {'CO1': 0.0168, 'DU1': 0, 'ES1': 0, 'GC1': 0.2097, 'NQ1': 0.0059, 'RX1': 0.6707, 'TP1': 0, 'TU2': 0, 'TY1': 0, 'VG1': 0},
+            "HFRX Index": {'CO1': 0.0782, 'DU1': 0.0790, 'ES1': 0.0513, 'GC1': 0.0467, 'NQ1': 0, 'RX1': 0.2697, 'TP1': 0.0673, 'TU2': 0.0660, 'TY1': 0.0713, 'VG1': 0},
+            "Monster Index 1": {'CO1': 0.1044, 'DU1': 0, 'ES1': 0, 'GC1': 0, 'NQ1': 0.0508, 'RX1': 0.5973, 'TP1': 0, 'TU2': 0, 'TY1': 0, 'VG1': 0},
+            "Monster Index 2": {'CO1': 0.1060, 'DU1': 0, 'ES1': 0.0867, 'GC1': 0, 'NQ1': 0.0518, 'RX1': 0.5355, 'TP1': 0, 'TU2': 0, 'TY1': 0, 'VG1': 0},
         }
 
         # Calcola l'investimento per ciascun future
@@ -105,7 +93,36 @@ def main():
                 st.write(f"**{future_code}:** {amount_invested:.2f}")
 
             # Mostra il grafico dei rendimenti dell'indice scelto e della replica
-            plot_index_returns(selected_index)
+            if selected_index == "MSCI World AC":
+                st.image("MXWO_LASSO_PREDICTION.png")
+                st.write("Mean Tracking Error: 0.0224")
+                st.write("Information Ratio: -0.8347")
+                st.write("Mean Turnover: 0.006")
+            elif selected_index == "MSCI World":
+                st.image("MXWD_LASSO_PREDICTION.png")
+                st.write("Mean Tracking Error: 0.0352")
+                st.write("Information Ratio: -0.3977")
+                st.write("Mean Turnover: 0.0077")    
+            elif selected_index == "BB Global Bond Agg":
+                st.image("LEGATRUU_LASSO_PREDICTION.png")
+                st.write("Mean Tracking Error: 0.0366")
+                st.write("Information Ratio: 0.0964")
+                st.write("Mean Turnover: 0.0022")
+            elif selected_index == "HFRX Index":
+                st.image("HFRLX_ELASTIC_COMPARISON.png")
+                st.write("Mean Tracking Error: 0.0158")
+                st.write("Information Ratio: -0.3074")
+                st.write("Mean Turnover: 0.0036")
+            elif selected_index == "Monster Index 1":
+                st.image("MONSTER1_LASSO_PREDICTION.png")
+                st.write("Mean Tracking Error: 0.0243")
+                st.write("Information Ratio: -0.6899")
+                st.write("Mean Turnover: 0.0049")
+            elif selected_index == "Monster Index 2":
+                st.image("MONSTER2_LASSO_COMPARISON.png")
+                st.write("Mean Tracking Error: 0.030")
+                st.write("Information Ratio: -0.485")
+                st.write("Mean Turnover: 0.0056")
 
 if __name__ == "__main__":
     main()
