@@ -38,8 +38,8 @@ def main():
     with st.expander("Introduction to the Indices"):
         st.markdown("""
             ### The indices we have focused on for replication are as follows:
-            - **MSCI World All Country**: This index captures large and mid-cap representation across 23 developed markets and 27 emerging markets countries, reflecting the performance of the global equity market.
-            - **MSCI World**: This index captures large and mid-cap representation across 23 developed markets countries, reflecting the performance of the global developed equity market.
+            - **MSCI World All Country**: This index captures large and mid-cap representation across 23 developed markets and 27 emerging markets countries, offering a comprehensive view of both developed and emerging equity markets worldwide.
+            - **MSCI World**: This index captures large and mid-cap representation across 23 developed markets, providing insight into the performance of the global developed equity market, excluding emerging markets.
             - **BB Global Bond Agg**: The Bloomberg Global Aggregate Bond Index is a flagship measure of global investment-grade debt from 24 local currency markets, providing a broad-based exposure to the global bond market.
             - **HFRX Index**: This index is designed to be representative of the overall composition of the hedge fund universe, offering insight into the performance of various hedge fund strategies.
             - **Monster Index 1**: A custom index that is a linear combination of the above indices with weights [0.25, 0, 0.25, 0.5], providing a diversified blend of equities, bonds, and alternative investments.
@@ -62,7 +62,7 @@ def main():
         investment_amount = st.number_input("Enter the amount you want to invest in the selected index:", min_value=0.0, step=100.0)
         st.write("""*Note that the replication portfolio might employ leverage or have a lower overall value*
         """)
-        st.write("""*The weights are valid for the next 10 days and will be updated thereafter*
+        st.write("""*The weights are valid for the next 10 weeks and will be updated thereafter*
         """)
         # Proporzioni di investimento nei futures (valori di esempio)
         futures_allocation = {
