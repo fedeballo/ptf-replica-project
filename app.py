@@ -94,7 +94,7 @@ def main():
 
             # Mostra il grafico dei rendimenti dell'indice scelto e della replica
             if selected_index == "MSCI World AC":
-                st.image("MXWO_LASSO_PREDICTION.png")
+                st.image("MXWO_LASSO_COMPARISON.png")
                 st.write("Mean Tracking Error: 0.0224")
                 st.write("Information Ratio: -0.8347")
                 st.write("Mean Turnover: 0.006")
