@@ -58,14 +58,14 @@ def main():
 
         st.write(f"## Replication of {selected_index}")
         
-        # Input for the investment amount
+        # Input per investment amount
         investment_amount = st.number_input("Enter the amount you want to invest in the selected index:", min_value=0.0, step=100.0)
         st.write("""*Note that the replication portfolio might employ leverage or have a lower overall value*
         """)
         st.write("""*The weights are valid for the next 10 weeks and will be updated thereafter*
         """)
 
-        # Proporzioni di investimento nei futures (valori di esempio)
+        # Proporzioni di investimento nei futures 
         futures_allocation = {
             "MSCI World AC": {'CO1': 0.0658, 'DU1': 0, 'ES1': 0.4981, 'GC1': 0, 'NQ1': 0.0082, 'RX1': 0.2052, 'TP1': 0, 'TU2': 0, 'TY1': 0, 'VG1': 0},
             "MSCI World": {'CO1': 0.0931, 'DU1': 0, 'ES1': 0.4558, 'GC1': 0, 'NQ1': 0.0078, 'RX1': 0.2031, 'TP1': 0, 'TU2': 0, 'TY1': 0, 'VG1': 0},
@@ -75,7 +75,7 @@ def main():
             "Monster Index 2": {'CO1': 0.1060, 'DU1': 0, 'ES1': 0.0867, 'GC1': 0, 'NQ1': 0.0518, 'RX1': 0.5355, 'TP1': 0, 'TU2': 0, 'TY1': 0, 'VG1': 0},
         }
 
-        # Mean Turnover values for each index (valori di esempio)
+        # Mean Turnover values per ogni indice 
         mean_turnover_values = {
             "MSCI World AC": 0.006,
             "MSCI World": 0.0077,
